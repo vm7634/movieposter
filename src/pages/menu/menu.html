@@ -1,20 +1,19 @@
 <ion-content class="menu-page">
 
-    <ion-slides slidesPerView="3" loop>
-        <ion-slide>
-            <button ion-button large>Speak</button>
-        </ion-slide>
-        <ion-slide>
-            <button ion-button large>Show Times</button>
-        </ion-slide>
-        <ion-slide>
-            <button ion-button large>Purchase Tickets</button>
-        </ion-slide>
-        <ion-slide>
-            <button ion-button large>View IMDB</button>
-        </ion-slide>
-        <ion-slide>
-            <button ion-button large>View Ratings</button>
-        </ion-slide>
-    </ion-slides>
+    <div class="listening-container" [hidden]="!isListening">
+        <div class="listening-icon pulse">
+        </div>
+
+        <div class="listening-text">
+            {{listeningText}}
+        </div>
+    </div>
+
+    <div #slidesWrapper class="slides-wrapper">
+        <ion-slides #slides slidesPerView="3" loop>
+            <ion-slide *ngFor="let slide of menuItems; let i=index">
+                <div class="menu-item" [attr.data-menu-item]="i" ion-button large (click)="itemSelected(i)" [style.backgroundImage]="'url(' + slide.icon + ')'">{{slide.title}}</div>
+            </ion-slide>
+        </ion-slides>
+    </div>
 </ion-content>

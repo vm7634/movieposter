@@ -4,16 +4,27 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { MenuPage } from '../pages/menu/menu';
+
+import { ApiaiService } from './services/apiai.service';
+import { BluemixService } from './services/bluemix.service';
+import { AnalyticsService } from './services/analytics.service';
+import { PosterService } from "./services/poster.service";
+import { FacesService } from "./services/faces.service";
+
 
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [ApiaiService, BluemixService, AnalyticsService,FacesService]
 })
+
 export class MyApp {
   rootPage:any = HomePage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen
+              ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
